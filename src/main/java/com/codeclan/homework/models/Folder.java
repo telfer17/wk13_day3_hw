@@ -22,8 +22,8 @@ public class Folder {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "folder", fetch = FetchType.LAZY)
+//    because we've got projections we don't need the fetchtype.lazy
+    @OneToMany(mappedBy = "folder")
     private List<File> files;
 
     public Folder(String title, User user) {
@@ -33,6 +33,14 @@ public class Folder {
     }
 
     public Folder() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -59,7 +67,4 @@ public class Folder {
         this.files = files;
     }
 
-    public void addFile(File file) {
-        this.files.add(file);
-    }
 }

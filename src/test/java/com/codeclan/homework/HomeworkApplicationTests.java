@@ -31,16 +31,42 @@ public class HomeworkApplicationTests {
 	}
 
 	@Test
-	public void canCreateUserFoldersFiles(){
-
-		User david = new User("David");
-		userRepository.save(david);
-
-		Folder folder1 = new Folder("Documents", david);
-		folderRepository.save(folder1);
-
-		File file1 = new File("tasks", "txt", 1000, folder1);
-		fileRepository.save(file1);
+	public void canAddUser(){
+		User user = new User("David");
+		userRepository.save(user);
 	}
 
+	@Test
+	public void canAddFolder() {
+		User user = new User("David");
+		userRepository.save(user);
+
+		Folder folder = new Folder("Documents", user);
+		folderRepository.save(folder);
+	}
+
+	@Test
+	public void canAddFileAndFolder(){
+		User user = new User("David");
+		userRepository.save(user);
+
+		Folder folder = new Folder("Documents", user);
+		folderRepository.save(folder);
+
+		File file = new File("Text", ".txt", 1000, folder);
+		fileRepository.save(file);
+	}
+
+	@Test
+	public void canHaveUserWithMultipleFolders() {
+		User user = new User("David");
+		userRepository.save(user);
+
+		Folder folder1 = new Folder("Documents", user);
+		folderRepository.save(folder1);
+
+		Folder folder2 = new Folder("Downloads", user);
+		folderRepository.save(folder2);
+
+	}
 }

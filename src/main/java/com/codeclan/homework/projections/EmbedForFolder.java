@@ -7,8 +7,8 @@ import org.springframework.data.rest.core.config.Projection;
 
 import java.util.List;
 
-@Projection(name = "embedUserInFolder", types = Folder.class)
-public interface EmbedUserInFolder {
+@Projection(name = "embedForFolder", types = Folder.class)
+public interface EmbedForFolder {
     User getUser();
     String getTitle();
     List<File> getFiles();

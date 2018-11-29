@@ -9,7 +9,9 @@ import com.codeclan.homework.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DataLoader implements ApplicationRunner {
 
     @Autowired
@@ -36,10 +38,10 @@ public class DataLoader implements ApplicationRunner {
         Folder folder2 = new Folder("Downloads", david);
         folderRepository.save(folder2);
 
-        File file1 = new File("Logo", "png", 2000, folder1);
+        File file1 = new File("Logo", ".png", 2000, folder1);
         fileRepository.save(file1);
 
-        File file2 = new File("Codeclan", "txt", 1000, folder2);
+        File file2 = new File("Codeclan", ".txt", 1000, folder2);
         fileRepository.save(file2);
 
         folder1.addFile(file1);
@@ -47,10 +49,6 @@ public class DataLoader implements ApplicationRunner {
 
         folder2.addFile(file2);
         folderRepository.save(folder2);
-
-        david.addFolder(folder1);
-        david.addFolder(folder2);
-        userRepository.save(david);
 
     }
 }

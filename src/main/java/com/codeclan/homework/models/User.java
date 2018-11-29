@@ -1,8 +1,7 @@
 package com.codeclan.homework.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +9,14 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private String name;
+
+    @OneToMany(mappedBy = "user")
     private List<Folder> folders;
 
     public User(String name) {
@@ -20,6 +25,14 @@ public class User {
     }
 
     public User() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -38,7 +51,4 @@ public class User {
         this.folders = folders;
     }
 
-    public void addFolder(Folder folder) {
-        this.folders.add(folder);
-    }
 }
